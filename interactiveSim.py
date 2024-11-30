@@ -6,9 +6,11 @@
 """
 from lib.interactive import *
 
-sim = interactiveSim() # Start the simulator
+sim = interactiveSim()  # Start the simulator
 
-if sim.script:  # Use '--s' as argument if you want to specify what you want to send here
+if (
+    sim.script
+):  # Use '--s' as argument if you want to specify what you want to send here
     try:
         time.sleep(45)  # Wait until nodeInfo messages are sent
         sim.showNodes()  # Show nodeDB as seen by each node
@@ -28,7 +30,7 @@ if sim.script:  # Use '--s' as argument if you want to specify what you want to 
         """ Admin Message (setOwner) from node 0 to node 1.
             First you need to add a shared admin channel. """
         # for n in sim.nodes:
-        #     n.addAdminChannel()  # or sim.getNodeById(n.nodeid).setURL(<'YOUR_URL'>)  
+        #     n.addAdminChannel()  # or sim.getNodeById(n.nodeid).setURL(<'YOUR_URL'>)
         # sim.sendFromTo(fromNode, toNode).setOwner(long_name="Test")  # can be any function in Node class
 
         """ Trace route from node 0 to node 1. 
@@ -38,9 +40,9 @@ if sim.script:  # Use '--s' as argument if you want to specify what you want to 
         """ Send a position request from node 0 to node 1. """
         # sim.requestPosition(fromNode, toNode)
 
-        time.sleep(15) # Wait until message are sent
-        sim.graph.plotMetrics(sim.nodes) # Plot airtime metrics
-        sim.graph.initRoutes(sim)  # Visualize the route of messages sent 
+        time.sleep(15)  # Wait until message are sent
+        sim.graph.plotMetrics(sim.nodes)  # Plot airtime metrics
+        sim.graph.initRoutes(sim)  # Visualize the route of messages sent
     except KeyboardInterrupt:
         sim.graph.plotMetrics(sim.nodes)
         sim.graph.initRoutes(sim)
